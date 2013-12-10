@@ -11,8 +11,8 @@ Line chart for iOS 7.0+
 - Scales to any frame.
 
 
+![alt tag](https://raw.github.com/Pearapps/KAChartView/master/chart.png)
 
 ![alt tag](https://raw.github.com/Pearapps/KAChartView/master/chart1.png)
 
-![alt tag](https://raw.github.com/Pearapps/KAChartView/master/chart.png)
 
