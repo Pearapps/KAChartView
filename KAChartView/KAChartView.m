@@ -73,7 +73,6 @@
     _yAxis = yAxis;
 }
 - (void)setYValues:(NSArray *)points{
-    NSLog(@"%@",points);
     _yValues = points;
     CGFloat maxY = -MAXFLOAT;
     for (NSNumber * numb in points){

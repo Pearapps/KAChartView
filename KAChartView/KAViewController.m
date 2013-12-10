@@ -31,7 +31,7 @@
     
     KAChartView * middle = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
     [middle setYValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]]];
-    middle.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
+    middle.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor yellowColor]};
     [middle setLineColor:[UIColor redColor]];
     [middle setFillColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]];
     [middle setXAxisLabels:[self numberedMonthIDsWithMonth:@"Sep" numberOfDays:7]];
@@ -70,6 +70,7 @@
     
     
     [self.view setBackgroundColor:[UIColor blackColor]];
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     }
@@ -78,7 +79,7 @@
 - (NSArray *)numberedMonthIDsWithMonth:(NSString *)string numberOfDays:(NSInteger)days{
     NSMutableArray * returnArray = [NSMutableArray array];
     for (NSInteger i = 0; i < days; i++){
-        [returnArray addObject:[string stringByAppendingFormat:@" %d", i+1]];
+        [returnArray addObject:[string stringByAppendingFormat:@" %ld", (long)(i+1)]];
     }
     return returnArray;
 }
