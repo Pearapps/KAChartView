@@ -7,7 +7,7 @@ Line chart for iOS 7.0+
 
 - Fast.
 - Customizable (line color, fill color, axis color, does show axises, x axis labels and their attributes)
-- Uses preferred numbers (r10 series) to calculate and scale the graphc automatically.
+- Uses preferred numbers (r10 series) to calculate and scale the graph automatically.
 - Scales to any frame.
 
 
