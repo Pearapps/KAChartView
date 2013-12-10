@@ -16,3 +16,6 @@ Line chart for iOS 7.0+
 ![alt tag](https://raw.github.com/Pearapps/KAChartView/master/chart1.png)
 
 
+What's Next:
+- The 'buffer' needs to be flexible to accomidate huge y axis values, while retaining right algined y axis labels.
+- Even more customization (line width, etc)
