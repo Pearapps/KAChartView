@@ -1,0 +1,326 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B918907F183A5FBF00783F1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B918907E183A5FBF00783F1A /* Foundation.framework */; };
+		B9189081183A5FBF00783F1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9189080183A5FBF00783F1A /* CoreGraphics.framework */; };
+		B9189083183A5FBF00783F1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9189082183A5FBF00783F1A /* UIKit.framework */; };
+		B9189089183A5FBF00783F1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B9189087183A5FBF00783F1A /* InfoPlist.strings */; };
+		B918908B183A5FBF00783F1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B918908A183A5FBF00783F1A /* main.m */; };
+		B918908F183A5FBF00783F1A /* KAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B918908E183A5FBF00783F1A /* KAAppDelegate.m */; };
+		B9189098183A5FBF00783F1A /* KAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9189097183A5FBF00783F1A /* KAViewController.m */; };
+		B91890B8183A606500783F1A /* KAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91890B7183A606500783F1A /* KAChartView.m */; };
+		B9630CCD183D290000AFABD6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9630CCC183D290000AFABD6 /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B918907B183A5FBF00783F1A /* KAChartView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KAChartView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B918907E183A5FBF00783F1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B9189080183A5FBF00783F1A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B9189082183A5FBF00783F1A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B9189086183A5FBF00783F1A /* KAChartView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KAChartView-Info.plist"; sourceTree = "<group>"; };
+		B9189088183A5FBF00783F1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B918908A183A5FBF00783F1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B918908C183A5FBF00783F1A /* KAChartView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KAChartView-Prefix.pch"; sourceTree = "<group>"; };
+		B918908D183A5FBF00783F1A /* KAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KAAppDelegate.h; sourceTree = "<group>"; };
+		B918908E183A5FBF00783F1A /* KAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KAAppDelegate.m; sourceTree = "<group>"; };
+		B9189096183A5FBF00783F1A /* KAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KAViewController.h; sourceTree = "<group>"; };
+		B9189097183A5FBF00783F1A /* KAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KAViewController.m; sourceTree = "<group>"; };
+		B91890A0183A5FBF00783F1A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B91890B6183A606500783F1A /* KAChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAChartView.h; sourceTree = "<group>"; };
+		B91890B7183A606500783F1A /* KAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAChartView.m; sourceTree = "<group>"; };
+		B9630CCC183D290000AFABD6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B9189078183A5FBF00783F1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9189081183A5FBF00783F1A /* CoreGraphics.framework in Frameworks */,
+				B9189083183A5FBF00783F1A /* UIKit.framework in Frameworks */,
+				B918907F183A5FBF00783F1A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B9189072183A5FBF00783F1A = {
+			isa = PBXGroup;
+			children = (
+				B9189084183A5FBF00783F1A /* KAChartView */,
+				B918907D183A5FBF00783F1A /* Frameworks */,
+				B918907C183A5FBF00783F1A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B918907C183A5FBF00783F1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B918907B183A5FBF00783F1A /* KAChartView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B918907D183A5FBF00783F1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B918907E183A5FBF00783F1A /* Foundation.framework */,
+				B9189080183A5FBF00783F1A /* CoreGraphics.framework */,
+				B9189082183A5FBF00783F1A /* UIKit.framework */,
+				B91890A0183A5FBF00783F1A /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B9189084183A5FBF00783F1A /* KAChartView */ = {
+			isa = PBXGroup;
+			children = (
+				B91890B9183A606900783F1A /* KAChartView */,
+				B9189096183A5FBF00783F1A /* KAViewController.h */,
+				B9189097183A5FBF00783F1A /* KAViewController.m */,
+				B9189085183A5FBF00783F1A /* Supporting Files */,
+			);
+			path = KAChartView;
+			sourceTree = "<group>";
+		};
+		B9189085183A5FBF00783F1A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B918908D183A5FBF00783F1A /* KAAppDelegate.h */,
+				B918908E183A5FBF00783F1A /* KAAppDelegate.m */,
+				B9630CCC183D290000AFABD6 /* Default-568h@2x.png */,
+				B9189086183A5FBF00783F1A /* KAChartView-Info.plist */,
+				B9189087183A5FBF00783F1A /* InfoPlist.strings */,
+				B918908A183A5FBF00783F1A /* main.m */,
+				B918908C183A5FBF00783F1A /* KAChartView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B91890B9183A606900783F1A /* KAChartView */ = {
+			isa = PBXGroup;
+			children = (
+				B91890B6183A606500783F1A /* KAChartView.h */,
+				B91890B7183A606500783F1A /* KAChartView.m */,
+			);
+			name = KAChartView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B918907A183A5FBF00783F1A /* KAChartView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B91890B0183A5FBF00783F1A /* Build configuration list for PBXNativeTarget "KAChartView" */;
+			buildPhases = (
+				B9189077183A5FBF00783F1A /* Sources */,
+				B9189078183A5FBF00783F1A /* Frameworks */,
+				B9189079183A5FBF00783F1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KAChartView;
+			productName = KAChartView;
+			productReference = B918907B183A5FBF00783F1A /* KAChartView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9189073183A5FBF00783F1A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = KA;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Kenneth Parker Ackerson";
+			};
+			buildConfigurationList = B9189076183A5FBF00783F1A /* Build configuration list for PBXProject "KAChartView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B9189072183A5FBF00783F1A;
+			productRefGroup = B918907C183A5FBF00783F1A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B918907A183A5FBF00783F1A /* KAChartView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B9189079183A5FBF00783F1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9189089183A5FBF00783F1A /* InfoPlist.strings in Resources */,
+				B9630CCD183D290000AFABD6 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B9189077183A5FBF00783F1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9189098183A5FBF00783F1A /* KAViewController.m in Sources */,
+				B91890B8183A606500783F1A /* KAChartView.m in Sources */,
+				B918908F183A5FBF00783F1A /* KAAppDelegate.m in Sources */,
+				B918908B183A5FBF00783F1A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B9189087183A5FBF00783F1A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9189088183A5FBF00783F1A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B91890AE183A5FBF00783F1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B91890AF183A5FBF00783F1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B91890B1183A5FBF00783F1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KAChartView/KAChartView-Prefix.pch";
+				INFOPLIST_FILE = "KAChartView/KAChartView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B91890B2183A5FBF00783F1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KAChartView/KAChartView-Prefix.pch";
+				INFOPLIST_FILE = "KAChartView/KAChartView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B9189076183A5FBF00783F1A /* Build configuration list for PBXProject "KAChartView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B91890AE183A5FBF00783F1A /* Debug */,
+				B91890AF183A5FBF00783F1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B91890B0183A5FBF00783F1A /* Build configuration list for PBXNativeTarget "KAChartView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B91890B1183A5FBF00783F1A /* Debug */,
+				B91890B2183A5FBF00783F1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B9189073183A5FBF00783F1A /* Project object */;
+}
