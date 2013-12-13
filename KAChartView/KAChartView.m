@@ -105,7 +105,7 @@
     [self setNeedsDisplay];
 }
 - (void)addLineWithYValues:(NSArray *)values{
-    [self addLine:[[KALine alloc] initWithValues:values withColor:[UIColor greenColor]]];
+    [self addLine:[[KALine alloc] initWithValues:values withLineColor:[UIColor greenColor]]];
 }
 
 
@@ -125,7 +125,7 @@ static inline CGFloat rounded(CGFloat value){
             return h * power;
         }
     }
-    return 1 * power;
+    return 1.0 * power;
 }
 static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y labels per 200 points
     heightOfView -= 200;
@@ -209,7 +209,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
 
 
 - (void)drawLineForYValues:(KALine *)line andMaxYValue:(CGFloat)maxYValue onContext:(CGContextRef)context{
-    CGContextSetStrokeColorWithColor(context, [line.color CGColor]);
+    CGContextSetStrokeColorWithColor(context, [line.lineColor CGColor]);
     CGContextSetLineWidth(context, line.lineWidth);
     for (int i = 0; i < line.values.count; i++){
         CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withLine:line.values];

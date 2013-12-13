@@ -10,19 +10,19 @@
 @interface KALine ()
 @end
 @implementation KALine
-- (instancetype)initWithValues:(NSArray *)values withColor:(UIColor *)color{
-    return [self initWithValues:values withColor:color andFillColor:nil];
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color{
+    return [self initWithValues:values withLineColor:color andFillColor:nil];
 }
-- (instancetype)initWithValues:(NSArray *)values withColor:(UIColor *)color andFillColor:(UIColor *)fillColor{
-    return [self initWithValues:values withColor:color andFillColor:fillColor andLineWidth:2.0];
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color andFillColor:(UIColor *)fillColor{
+    return [self initWithValues:values withLineColor:color andFillColor:fillColor andLineWidth:2.0];
 }
-- (instancetype)initWithValues:(NSArray *)values withColor:(UIColor *)color andLineWidth:(CGFloat)lineWidth{
-    return [self initWithValues:values withColor:color andFillColor:nil andLineWidth:lineWidth];
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color andLineWidth:(CGFloat)lineWidth{
+    return [self initWithValues:values withLineColor:color andFillColor:nil andLineWidth:lineWidth];
 }
-- (instancetype)initWithValues:(NSArray *)values withColor:(UIColor *)color andFillColor:(UIColor *)fillColor andLineWidth:(CGFloat)lineWidth{
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color andFillColor:(UIColor *)fillColor andLineWidth:(CGFloat)lineWidth{
     if (self = [super init]){
         _values = values;
-        _color = color;
+        _lineColor = color;
         _fillColor = fillColor;
         _lineWidth = lineWidth;
     }
@@ -30,7 +30,7 @@
 }
 - (void)dealloc{
     _values = nil;
-    _color = nil;
+    _lineColor = nil;
     _fillColor = nil;
 }
 @end

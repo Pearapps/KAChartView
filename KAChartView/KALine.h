@@ -10,20 +10,21 @@
 
 @interface KALine : NSObject
 
-- (instancetype)initWithValues:(NSArray *)values withColor:(UIColor *)color andFillColor:(UIColor *)fillColor andLineWidth:(CGFloat)lineWidth;
+// designated initializer
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color andFillColor:(UIColor *)fillColor andLineWidth:(CGFloat)lineWidth; // Set values, line color, fillColor and lineWidth of the line
 
 
-- (instancetype)initWithValues:(NSArray *)values withColor:(UIColor *)color andFillColor:(UIColor *)fillColor;
-- (instancetype)initWithValues:(NSArray *)values withColor:(UIColor *)color andLineWidth:(CGFloat)lineWidth;
+// secondary initializers
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color andFillColor:(UIColor *)fillColor; // Set values, line color, and fillColor of the line
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color andLineWidth:(CGFloat)lineWidth; // Set values, line color, and lineWidth of the line
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color; // Set values and line color of the line
 
 
-- (instancetype)initWithValues:(NSArray *)values withColor:(UIColor *)color;
-
-
-@property (nonatomic, readonly) CGFloat lineWidth;
-@property (nonatomic, readonly, strong) UIColor *color;
-@property (nonatomic, readonly, strong) UIColor *fillColor;
+@property (nonatomic, readonly) CGFloat lineWidth; // The line's width
+@property (nonatomic, readonly, strong) UIColor *lineColor; // The line's color
 @property (nonatomic, readonly, strong) NSArray *values;
+
+@property (nonatomic, readonly, strong) UIColor *fillColor; // The line's fill color (Important) **This fills all the space under the line NOT the actual line**
 
 
 @end
