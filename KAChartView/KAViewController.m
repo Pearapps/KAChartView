@@ -22,31 +22,49 @@
     [self.view addSubview:scroll];
     
     KAChartView * first = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    [first setYValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]]];
+    
+    
+    [first addLine:[[KALine alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withColor:[UIColor greenColor] andFillColor:[UIColor colorWithRed:0 green:1.0 blue:0.0 alpha:0.1]]];
+    
+    
     first.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
-    [first setLineColor:[UIColor greenColor]];
-    [first setFillColor:[UIColor colorWithRed:0 green:1.0 blue:0.0 alpha:0.1]];
     [first setDoesDrawAxisLines:YES];
     
     
+    
+
     KAChartView * middle = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    [middle setYValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]]];
+    [middle addLine:[[KALine alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withColor:[UIColor redColor] andFillColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]]];
     middle.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor yellowColor]};
-    [middle setLineColor:[UIColor redColor]];
-    [middle setFillColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]];
     [middle setXAxisLabels:[self numberedMonthIDsWithMonth:@"Sep" numberOfDays:7]];
     [middle setDoesDrawAxisLines:YES];
     
+    
+    
+    
     KAChartView * next = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    [next setYValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]]];
+    KALine * lastLine = [[KALine alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:120000]] withColor:[UIColor greenColor] andFillColor:nil andLineWidth:1.0];
+    
+    [next addLine:[[KALine alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor redColor]]];
+    [next addLine:[[KALine alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor purpleColor]]];
+    [next addLine:lastLine];
     next.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
    
     
+    
+    
+    
+    
     KAChartView * lowest = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
-    [lowest setYValues:[self randomizedPoints:[self generateRandomArrayOfLength:8 withNumbersBetween:10 andTop:10000]]];
+    
+    [lowest addLine:[[KALine alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:10 withNumbersBetween:0 andTop:10000]] withColor:[UIColor yellowColor] andFillColor:nil]];
+    
     [lowest setDoesDrawAxisLines:YES];
     [lowest setAxisLineColor:[UIColor colorWithRed:0.2 green:0.4 blue:0.1 alpha:0.7]];
-    [lowest setLineColor:[UIColor blueColor]];
+    
+    
+    
+    
     
     [charts addObject:first];
     [charts addObject:middle];

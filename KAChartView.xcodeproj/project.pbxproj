@@ -16,6 +16,7 @@
 		B9189098183A5FBF00783F1A /* KAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9189097183A5FBF00783F1A /* KAViewController.m */; };
 		B91890B8183A606500783F1A /* KAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91890B7183A606500783F1A /* KAChartView.m */; };
 		B9630CCD183D290000AFABD6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9630CCC183D290000AFABD6 /* Default-568h@2x.png */; };
+		B96C27E9185B40020010C843 /* KALine.m in Sources */ = {isa = PBXBuildFile; fileRef = B96C27E8185B40020010C843 /* KALine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		B91890B6183A606500783F1A /* KAChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAChartView.h; sourceTree = "<group>"; };
 		B91890B7183A606500783F1A /* KAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAChartView.m; sourceTree = "<group>"; };
 		B9630CCC183D290000AFABD6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B96C27E7185B40020010C843 /* KALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KALine.h; sourceTree = "<group>"; };
+		B96C27E8185B40020010C843 /* KALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KALine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 			children = (
 				B91890B6183A606500783F1A /* KAChartView.h */,
 				B91890B7183A606500783F1A /* KAChartView.m */,
+				B96C27E7185B40020010C843 /* KALine.h */,
+				B96C27E8185B40020010C843 /* KALine.m */,
 			);
 			name = KAChartView;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				B91890B8183A606500783F1A /* KAChartView.m in Sources */,
 				B918908F183A5FBF00783F1A /* KAAppDelegate.m in Sources */,
 				B918908B183A5FBF00783F1A /* main.m in Sources */,
+				B96C27E9185B40020010C843 /* KALine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
