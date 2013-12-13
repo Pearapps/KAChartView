@@ -21,6 +21,7 @@
     self.axisLabelAttributes = nil;
     self.xAxisLabels = nil;
     self.axisLineColor = nil;
+    self.lines = nil;
 }
 - (id)initWithFrame:(CGRect)frame
 {
@@ -85,6 +86,7 @@
         [self recalculateMaxY];
         // no need to recalculate xaxis if there is lines in the array, they should all have the same amount of values
     }
+    [self setNeedsDisplay];
 }
 - (void)addLine:(KALine *)line{
     
@@ -103,7 +105,7 @@
     [self setNeedsDisplay];
 }
 - (void)addLineWithYValues:(NSArray *)values{
-    [self addLine:[[KALine alloc] initWithValues:values withColor:[UIColor greenColor] andFillColor:nil]];
+    [self addLine:[[KALine alloc] initWithValues:values withColor:[UIColor greenColor]]];
 }
 
 
@@ -142,7 +144,6 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
 
 - (void)drawRect:(CGRect)rect
 {
-    
     if (self.lines.count == 0){
         return;
     }
@@ -159,7 +160,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     CGFloat distanceBetweenYAxisTicks = (self.frame.size.height - kBuffer*2)/(numberOfYAxisTicks);
 
     BOOL showsDecimals = NO;
-    if (maxYValue <=numberOfXAxisTicks){
+    if (maxYValue <= numberOfXAxisTicks){
         showsDecimals = YES;
     }
     
@@ -170,7 +171,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
         }else{
             xValueAtIndex = [NSString stringWithFormat:@"%d", i];
         }
-        CGPoint point = CGPointMake([self xFory:i withLine:[(KALine*)[self.lines firstObject] values]], self.frame.size.height - kBuffer+8);
+        CGPoint point = CGPointMake([self xFory:i withLine:[(KALine*)[self.lines firstObject] values]], CGRectGetHeight(self.frame) - kBuffer+8);
         
         [xValueAtIndex drawAtPoint:CGPointMake(point.x - [xValueAtIndex sizeWithAttributes:self.axisLabelAttributes].width/2, point.y) withAttributes:self.axisLabelAttributes];
     }
@@ -191,7 +192,6 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    
     if (self.doesDrawAxisLines){
         CGContextMoveToPoint(context, kBuffer, kBuffer);
         CGContextSetStrokeColorWithColor(context, [self.axisLineColor CGColor]);
@@ -200,9 +200,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
         CGContextAddLineToPoint(context, self.frame.size.width - kBuffer, self.frame.size.height - kBuffer);
         CGContextDrawPath(context, kCGPathStroke);
     }
-    
-    
-    
+
     for (KALine *line in self.lines){
         [self drawLineForYValues:line andMaxYValue:maxYValue onContext:context];
     }
@@ -211,7 +209,6 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
 
 
 - (void)drawLineForYValues:(KALine *)line andMaxYValue:(CGFloat)maxYValue onContext:(CGContextRef)context{
-    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
     CGContextSetStrokeColorWithColor(context, [line.color CGColor]);
     CGContextSetLineWidth(context, line.lineWidth);
     for (int i = 0; i < line.values.count; i++){
@@ -232,7 +229,6 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
             CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withLine:line.values];
             
             CGContextAddLineToPoint(context,point.x,point.y);
-            
         }
         
         CGContextAddLineToPoint(context, [self xFory:line.values.count-1 withLine:line.values], CGRectGetHeight(self.frame)-kBuffer);
@@ -240,8 +236,6 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
         CGContextSetFillColorWithColor(context, [[line fillColor] CGColor]);
         CGContextDrawPath(context, kCGPathFill);
     }
-    NSLog(@"time - %f", [[NSDate date] timeIntervalSince1970]-time);
-
 }
 
 
@@ -254,7 +248,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     return CGPointMake(
                        [self xFory:i withLine:lineValues],
                        
-                       (self.frame.size.height - kBuffer) - (y*(self.frame.size.height-kBuffer*2))
+                       (self.frame.size.height - kBuffer) - (y*(CGRectGetHeight(self.frame)-kBuffer*2))
                        
                        );
 }
