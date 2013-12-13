@@ -28,5 +28,9 @@
     }
     return self;
 }
-
+- (void)dealloc{
+    _values = nil;
+    _color = nil;
+    _fillColor = nil;
+}
 @end

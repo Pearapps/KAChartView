@@ -49,14 +49,11 @@
     [next addLine:[[KALine alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor purpleColor]]];
     [next addLine:lastLine];
     next.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
-   
-    
-    
+   // [self performSelector:@selector(test:) withObject:next afterDelay:1.5];
     
     
     
     KAChartView * lowest = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
-    
     [lowest addLine:[[KALine alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:10 withNumbersBetween:0 andTop:10000]] withColor:[UIColor yellowColor] andFillColor:nil]];
     
     [lowest setDoesDrawAxisLines:YES];
@@ -94,6 +91,9 @@
     }
     [super viewDidLoad];
 }
+//- (void)test:(KAChartView *)cjart{
+//    [cjart removeFromSuperview];
+//}
 - (NSArray *)numberedMonthIDsWithMonth:(NSString *)string numberOfDays:(NSInteger)days{
     NSMutableArray * returnArray = [NSMutableArray array];
     for (NSInteger i = 0; i < days; i++){

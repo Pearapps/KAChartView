@@ -21,9 +21,9 @@
 
 
 @property (nonatomic, readonly) CGFloat lineWidth;
-@property (nonatomic, readonly) UIColor *color;
-@property (nonatomic, readonly) UIColor *fillColor;
-@property (nonatomic, readonly) NSArray *values;
+@property (nonatomic, readonly, strong) UIColor *color;
+@property (nonatomic, readonly, strong) UIColor *fillColor;
+@property (nonatomic, readonly, strong) NSArray *values;
 
 
 @end
