@@ -61,14 +61,11 @@
     
     
     
-    
-    
     [charts addObject:first];
     [charts addObject:middle];
     [charts addObject:next];
     [charts addObject:lowest];
 
-    
     
     
     __block CGFloat curY = 0;

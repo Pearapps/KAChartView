@@ -154,6 +154,11 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     
     CGFloat maxYValue = rounded(maxY);
     
+    if (maxYValue <= 0){
+        // nope. dont draw anything.
+        return;
+    }
+    
     CGFloat representativeValueOfYAxisPerTick = maxYValue/numberOfYAxisTicks;
     
     
