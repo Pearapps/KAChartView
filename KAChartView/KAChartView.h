@@ -6,17 +6,20 @@
 //  Copyright (c) 2013 Kenneth Parker Ackerson. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+
 #import "KALine.h"
+#import "KAChartViewTypes.h"
+
 #define kBuffer 40 // space on each side to 'buffer' it
-@interface KAChartView : UIView
+@interface KAChartView : KAView
 
 
 @property (nonatomic, assign) BOOL doesDrawGrid; // NOT FUNCTIONAL
 
 @property (nonatomic, assign) BOOL doesDrawAxisLines; // draw the x and y axis?
 
-@property (nonatomic, strong) UIColor * axisLineColor; // color of axis lines
+@property (nonatomic, strong) KAColor * axisLineColor; // color of axis lines
 
 @property (nonatomic, strong) NSDictionary * axisLabelAttributes; // attributes to draw x axis labels
 

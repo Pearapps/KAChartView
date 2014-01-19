@@ -10,16 +10,16 @@
 @interface KALine ()
 @end
 @implementation KALine
-- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color{
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(KAColor *)color{
     return [self initWithValues:values withLineColor:color andFillColor:nil];
 }
-- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color andFillColor:(UIColor *)fillColor{
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(KAColor *)color andFillColor:(KAColor *)fillColor{
     return [self initWithValues:values withLineColor:color andFillColor:fillColor andLineWidth:2.0];
 }
-- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color andLineWidth:(CGFloat)lineWidth{
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(KAColor *)color andLineWidth:(CGFloat)lineWidth{
     return [self initWithValues:values withLineColor:color andFillColor:nil andLineWidth:lineWidth];
 }
-- (instancetype)initWithValues:(NSArray *)values withLineColor:(UIColor *)color andFillColor:(UIColor *)fillColor andLineWidth:(CGFloat)lineWidth{
+- (instancetype)initWithValues:(NSArray *)values withLineColor:(KAColor *)color andFillColor:(KAColor *)fillColor andLineWidth:(CGFloat)lineWidth{
     if (self = [super init]){
         _values = values;
         _lineColor = color;
