@@ -1,7 +1,7 @@
 KAChartView
 ===========
 
-Line chart for iOS 7.0+
+Line chart for iOS 7.0+ and Mac OS X 10.9+
 
 #Features
 
