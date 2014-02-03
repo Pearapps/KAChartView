@@ -20,11 +20,25 @@
 - (instancetype)initWithValues:(NSArray *)values withLineColor:(KAColor *)color; // Set values and line color of the line
 
 
-@property (nonatomic, readonly) CGFloat lineWidth; // The line's width
-@property (nonatomic, readonly, strong) KAColor *lineColor; // The line's color
+/** @property lineWidth
+ *   The lines width
+ */
+@property (nonatomic, readonly) CGFloat lineWidth;
+
+/** @property lineColor
+ *   The lines color (UIColor for iOS, NSColor for Mac OS X)
+ */
+@property (nonatomic, readonly, strong) KAColor *lineColor;
+
+/** @property values
+ *   The array of values represented by the line
+ */
 @property (nonatomic, readonly, strong) NSArray *values;
 
-@property (nonatomic, readonly, strong) KAColor *fillColor; // The line's fill color (Important) **This fills all the space under the line NOT the actual line**
+/** @property fillColor
+ *   The fill color under the line (UIColor for iOS, NSColor for Mac OS X)
+ */
+@property (nonatomic, readonly, strong) KAColor *fillColor;
 
 
 @end

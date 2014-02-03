@@ -15,13 +15,14 @@
 #define KAColor UIColor
 #define KAView UIView
 #define KAFont UIFont
-
+#define KAImage UIImage
 #else
 
 #import <AppKit/AppKit.h>
 #define KAColor NSColor
 #define KAView NSView
 #define KAFont NSFont
+#define KAImage NSImage
 
 #define KAIsMac 1
 

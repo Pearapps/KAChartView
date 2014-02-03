@@ -14,22 +14,57 @@
 #define kBuffer 40 // space on each side to 'buffer' it
 @interface KAChartView : KAView
 
+/** @property doesDrawGrid
+ *   Does draw grid?
+*/
+@property (nonatomic, assign) BOOL doesDrawGrid;
 
-@property (nonatomic, assign) BOOL doesDrawGrid; // NOT FUNCTIONAL
+/** @property doesDrawAxisLines
+ *   Does draw Axis lines?
+ */
+@property (nonatomic, assign) BOOL doesDrawAxisLines;
 
-@property (nonatomic, assign) BOOL doesDrawAxisLines; // draw the x and y axis?
+/** @property axisLineColor
+ *   Color of axis lines
+ */
+@property (nonatomic, strong) KAColor * axisLineColor; // Color of axis lines
 
-@property (nonatomic, strong) KAColor * axisLineColor; // color of axis lines
+/** @property axisLabelAttributes
+ *   Text attributes of axis labels
+ */
+@property (nonatomic, strong) NSDictionary * axisLabelAttributes; // Attributes to draw x axis labels
 
-@property (nonatomic, strong) NSDictionary * axisLabelAttributes; // attributes to draw x axis labels
+/** @property xAxisLabels
+ *   X Axis labels (NSArray of strings)
+ */
+@property (nonatomic, strong) NSArray * xAxisLabels; // You can customize the labels on the x axis
 
-@property (nonatomic, strong) NSArray * xAxisLabels; // you can customize the labels on the x axis
+/**
+ * Add a line
+ *
+ * @param line Line object to add
+ */
+- (void)addLine:(KALine *)line;
 
-- (void)addLine:(KALine *)line; // add a line object to the graph (values, color, fill color)
+/**
+ * Remove a line
+ *
+ * @param line Line object to remove
+ */
 - (void)removeLine:(KALine *)line;
 
+/**
+ * Gets the image Representation
+ *
+ * @return The image (UIImage for iOS, NSImage for Mac OS X)
+ */
+- (KAImage *)imageRepresentation;
 
-
-- (void)addLineWithYValues:(NSArray *)values; // this allows you to simply add an array of NSNumbers (uses [UIColor greenColor] for line color) (I STRONGLY recomend using "- (void)addLine:(KALine *)line;")
+/**
+ * This allows you to simply add an array of NSNumbers (uses [UIColor greenColor] for line color) (I STRONGLY recomend using "- (void)addLine:(KALine *)line;")
+ *
+ * @param values Array of values
+*/
+- (void)addLineWithYValues:(NSArray *)values;
 
 @end

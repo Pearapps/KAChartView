@@ -245,6 +245,35 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     }
     
 }
+
+#if KAIsMac
+
+- (KAImage *)imageRepresentation {
+    NSSize mySize = self.bounds.size;
+    NSSize imgSize = NSMakeSize( mySize.width, mySize.height );
+    
+    NSBitmapImageRep *bir = [self bitmapImageRepForCachingDisplayInRect:[self bounds]];
+    [bir setSize:imgSize];
+    [self cacheDisplayInRect:[self bounds] toBitmapImageRep:bir];
+    
+    KAImage* image = [[NSImage alloc]initWithSize:imgSize];
+    [image addRepresentation:bir];
+    return image;
+}
+
+#else
+- (KAImage *)imageRepresentation {
+    UIGraphicsBeginImageContext(self.frame.size);
+    [[self layer] renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+
+#endif
+
+
 - (CGContextRef)_graphicsContext{
 #if TARGET_OS_IPHONE
     return UIGraphicsGetCurrentContext();

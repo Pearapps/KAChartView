@@ -14,8 +14,7 @@
 
 @implementation KAViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     
     UIScrollView * scroll = [[UIScrollView alloc] initWithFrame:self.view.frame];
     NSMutableArray * charts = [[NSMutableArray alloc] init];
@@ -31,14 +30,11 @@
     [first setDoesDrawAxisLines:YES];
     
     
-    
-
     KAChartView * middle = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
     [middle addLine:[[KALine alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withLineColor:[UIColor redColor] andFillColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]]];
     middle.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor yellowColor]};
     [middle setXAxisLabels:[self numberedMonthIDsWithMonth:@"Sep" numberOfDays:7]];
     [middle setDoesDrawAxisLines:YES];
-    
     
     
     
@@ -88,10 +84,8 @@
     }
     [super viewDidLoad];
 }
-//- (void)test:(KAChartView *)cjart{
-//    [cjart removeFromSuperview];
-//}
-- (NSArray *)numberedMonthIDsWithMonth:(NSString *)string numberOfDays:(NSInteger)days{
+
+- (NSArray *)numberedMonthIDsWithMonth:(NSString *)string numberOfDays:(NSInteger)days {
     NSMutableArray * returnArray = [NSMutableArray array];
     for (NSInteger i = 0; i < days; i++){
         [returnArray addObject:[string stringByAppendingFormat:@" %ld", (long)(i+1)]];
@@ -100,14 +94,14 @@
 }
 
 
-- (NSArray *)generateRandomArrayOfLength:(int)length withNumbersBetween:(CGFloat)bottom andTop:(CGFloat)top{
+- (NSArray *)generateRandomArrayOfLength:(int)length withNumbersBetween:(CGFloat)bottom andTop:(CGFloat)top {
     NSMutableArray * array = @[].mutableCopy;
     for(NSInteger i = 0; i < length; i++){
         array[i] = @(bottom + (arc4random_uniform((NSInteger)(top - bottom))));
     }
     return array;
 }
--(NSArray *)pointsForChartView{
+-(NSArray *)pointsForChartView {
     return @[@(11.0),@(0.0),@(0),@(20),@(0),@(0),@(0)];
 }
 - (NSArray *)randomizedPoints:(NSArray *)arrayToRandimize{
