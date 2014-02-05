@@ -11,10 +11,12 @@
 @implementation KAAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    KAChartView * middle = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 960, 600)];
+    KAChartView * middle = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 700, 300)];
 
-    KALine *line =[[KALine alloc] initWithValues:[self generateRandomArrayOfLength:50 withNumbersBetween:0 andTop:50] withLineColor:[KAColor redColor] andFillColor:[KAColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]];
-    [middle addLine:line];
+    KALine *line = [[KALine alloc] initWithValues:[self generateRandomArrayOfLength:50 withNumbersBetween:0 andTop:50] withLineColor:[KAColor redColor] andFillColor:[KAColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]];
+   // KALine *aline = [[KALine alloc] initWithValues:[self generateRandomArrayOfLength:50 withNumbersBetween:0 andTop:50] withLineColor:[KAColor greenColor] andFillColor:nil];
+    
+    [middle addLines:@[line]];
     middle.axisLabelAttributes = @{NSFontAttributeName: [KAFont systemFontOfSize:10], NSForegroundColorAttributeName: [KAColor blackColor]};
     [middle setXAxisLabels:[self createBlankStringArrayOfLength:50]];
     [middle setDoesDrawAxisLines:YES];

@@ -114,6 +114,13 @@
     }
     [self _needsDisplay];
 }
+
+- (void)addLines:(NSArray *)lines {
+    for (KALine *line in lines) {
+        [self addLine:line];
+    }
+}
+
 - (void)addLineWithYValues:(NSArray *)values{
     [self addLine:[[KALine alloc] initWithValues:values withLineColor:[KAColor greenColor]]];
 }
@@ -255,7 +262,6 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     NSBitmapImageRep *bir = [self bitmapImageRepForCachingDisplayInRect:[self bounds]];
     [bir setSize:imgSize];
     [self cacheDisplayInRect:[self bounds] toBitmapImageRep:bir];
-    
     KAImage* image = [[NSImage alloc]initWithSize:imgSize];
     [image addRepresentation:bir];
     return image;

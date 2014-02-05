@@ -54,11 +54,12 @@
 - (void)removeLine:(KALine *)line;
 
 /**
- * Gets the image Representation
+ * Add Lines
  *
- * @return The image (UIImage for iOS, NSImage for Mac OS X)
+ *@param lines Array of KALines
  */
-- (KAImage *)imageRepresentation;
+
+- (void)addLines:(NSArray *)lines;
 
 /**
  * This allows you to simply add an array of NSNumbers (uses [UIColor greenColor] for line color) (I STRONGLY recomend using "- (void)addLine:(KALine *)line;")
@@ -66,5 +67,13 @@
  * @param values Array of values
 */
 - (void)addLineWithYValues:(NSArray *)values;
+
+
+/**
+ * Gets the image Representation
+ *
+ * @return The image (UIImage for iOS, NSImage for Mac OS X)
+ */
+- (KAImage *)imageRepresentation;
 
 @end
