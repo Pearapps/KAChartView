@@ -16,7 +16,7 @@
 		B9189098183A5FBF00783F1A /* KAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9189097183A5FBF00783F1A /* KAViewController.m */; };
 		B91890B8183A606500783F1A /* KAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91890B7183A606500783F1A /* KAChartView.m */; };
 		B9630CCD183D290000AFABD6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9630CCC183D290000AFABD6 /* Default-568h@2x.png */; };
-		B96C27E9185B40020010C843 /* KALine.m in Sources */ = {isa = PBXBuildFile; fileRef = B96C27E8185B40020010C843 /* KALine.m */; };
+		B96C27E9185B40020010C843 /* KADataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B96C27E8185B40020010C843 /* KADataSet.m */; };
 		B996EE6B18837E33008536B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B996EE6918837E33008536B9 /* InfoPlist.strings */; };
 		B996EE6D18837E33008536B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B996EE6C18837E33008536B9 /* main.m */; };
 		B996EE7118837E33008536B9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B996EE6F18837E33008536B9 /* Credits.rtf */; };
@@ -26,7 +26,7 @@
 		B996EE9F18838188008536B9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996EE9518838145008536B9 /* AppKit.framework */; };
 		B996EEA018838188008536B9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B996EE9318838133008536B9 /* Cocoa.framework */; };
 		B996EEA1188381A7008536B9 /* KAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91890B7183A606500783F1A /* KAChartView.m */; };
-		B996EEA2188381AB008536B9 /* KALine.m in Sources */ = {isa = PBXBuildFile; fileRef = B96C27E8185B40020010C843 /* KALine.m */; };
+		B996EEA2188381AB008536B9 /* KADataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B96C27E8185B40020010C843 /* KADataSet.m */; };
 		B996EEA518839DE0008536B9 /* KASharedMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B996EEA418839DE0008536B9 /* KASharedMethods.m */; };
 		B996EEA618839DE0008536B9 /* KASharedMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B996EEA418839DE0008536B9 /* KASharedMethods.m */; };
 /* End PBXBuildFile section */
@@ -47,8 +47,8 @@
 		B91890B6183A606500783F1A /* KAChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KAChartView.h; path = KAChartView/KAChartView.h; sourceTree = "<group>"; };
 		B91890B7183A606500783F1A /* KAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KAChartView.m; path = KAChartView/KAChartView.m; sourceTree = "<group>"; };
 		B9630CCC183D290000AFABD6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		B96C27E7185B40020010C843 /* KALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KALine.h; path = KAChartView/KALine.h; sourceTree = "<group>"; };
-		B96C27E8185B40020010C843 /* KALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KALine.m; path = KAChartView/KALine.m; sourceTree = "<group>"; };
+		B96C27E7185B40020010C843 /* KADataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KADataSet.h; path = KAChartView/KADataSet.h; sourceTree = "<group>"; };
+		B96C27E8185B40020010C843 /* KADataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KADataSet.m; path = KAChartView/KADataSet.m; sourceTree = "<group>"; };
 		B996EE5F18837E33008536B9 /* KAChartViewMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KAChartViewMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B996EE6818837E33008536B9 /* KAChartViewMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KAChartViewMac-Info.plist"; sourceTree = "<group>"; };
 		B996EE6A18837E33008536B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 				B996EE9118837FF2008536B9 /* KAChartViewTypes.h */,
 				B91890B6183A606500783F1A /* KAChartView.h */,
 				B91890B7183A606500783F1A /* KAChartView.m */,
-				B96C27E7185B40020010C843 /* KALine.h */,
-				B96C27E8185B40020010C843 /* KALine.m */,
+				B96C27E7185B40020010C843 /* KADataSet.h */,
+				B96C27E8185B40020010C843 /* KADataSet.m */,
 			);
 			name = KAChartView;
 			sourceTree = "<group>";
@@ -247,7 +247,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = KA;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Kenneth Parker Ackerson";
 			};
 			buildConfigurationList = B9189076183A5FBF00783F1A /* Build configuration list for PBXProject "KAChartView" */;
@@ -301,7 +301,7 @@
 				B918908F183A5FBF00783F1A /* KAAppDelegate.m in Sources */,
 				B996EEA518839DE0008536B9 /* KASharedMethods.m in Sources */,
 				B918908B183A5FBF00783F1A /* main.m in Sources */,
-				B96C27E9185B40020010C843 /* KALine.m in Sources */,
+				B96C27E9185B40020010C843 /* KADataSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B996EEA2188381AB008536B9 /* KALine.m in Sources */,
+				B996EEA2188381AB008536B9 /* KADataSet.m in Sources */,
 				B996EEA1188381A7008536B9 /* KAChartView.m in Sources */,
 				B996EE7418837E33008536B9 /* KAAppDelegate.m in Sources */,
 				B996EE6D18837E33008536B9 /* main.m in Sources */,
@@ -359,7 +359,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -399,7 +398,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -528,6 +526,7 @@
 				B996EE8C18837E33008536B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

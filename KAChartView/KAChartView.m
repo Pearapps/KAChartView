@@ -9,10 +9,12 @@
 #import "KAChartView.h"
 @interface KAChartView(){
     CGFloat maxY;
+    CGFloat kBuffer;
 
 }
 @property (nonatomic, assign) NSRange xAxis;
-@property (nonatomic, strong) NSMutableArray * lines; // 2d array of y values [ [firstlinevalues], [secondlinevalues] ]
+@property (nonatomic, strong) NSMutableArray * dataSets;
+@property (nonatomic, assign) KAChartViewType type;
 
 @end
 @implementation KAChartView
@@ -21,12 +23,16 @@
     self.axisLabelAttributes = nil;
     self.xAxisLabels = nil;
     self.axisLineColor = nil;
-    self.lines = nil;
+    self.dataSets = nil;
 }
-- (id)initWithFrame:(CGRect)frame
-{
+
+- (instancetype)initWithFrame:(CGRect)frame andType:(KAChartViewType)type {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.type = type;
+        kBuffer = kBufferValue;
+
         self.doesDrawGrid = NO;
         self.doesDrawAxisLines = NO;
 #if TARGET_OS_IPHONE
@@ -36,7 +42,7 @@
         self.axisLabelAttributes = @{NSFontAttributeName: [KAFont systemFontOfSize:10], NSForegroundColorAttributeName: [KAColor lightGrayColor]};
         self.axisLineColor = [KAColor lightGrayColor];
         
-        self.lines = [[NSMutableArray alloc] init];
+        self.dataSets = [[NSMutableArray alloc] init];
         
         maxY = -MAXFLOAT;
     }
@@ -77,7 +83,7 @@
 
 - (void)recalculateMaxY{
     maxY = -MAXFLOAT;
-    for (KALine *line in self.lines){
+    for (KADataSet *line in self.dataSets){
         for (NSNumber * numb in line.values){
             CGFloat y = [numb doubleValue];
             if (y > maxY){
@@ -87,9 +93,9 @@
     }
 }
 
-- (void)removeLine:(KALine *)line{
-    [self.lines removeObject:line];
-    if (self.lines.count == 0){
+- (void)removeDataSet:(KADataSet *)line{
+    [self.dataSets removeObject:line];
+    if (self.dataSets.count == 0){
         maxY = -MAXFLOAT;
         [self setXAxis:NSMakeRange(0, 0)];
     }else{
@@ -98,14 +104,14 @@
     }
     [self _needsDisplay];
 }
-- (void)addLine:(KALine *)line{
+- (void)addDataSet:(KADataSet *)line{
     
-    if (self.lines.count > 0){
+    if (self.dataSets.count > 0){
         NSAssert((line.values.count == self.xAxis.length), @"Invalid additional line - different amount of values.");
     }else{
         [self setXAxis:NSMakeRange(0, line.values.count)];
     }
-    [self.lines addObject:line];
+    [self.dataSets addObject:line];
     for (NSNumber * numb in line.values){
         CGFloat y = [numb doubleValue];
         if (y > maxY){
@@ -115,14 +121,14 @@
     [self _needsDisplay];
 }
 
-- (void)addLines:(NSArray *)lines {
-    for (KALine *line in lines) {
-        [self addLine:line];
+- (void)addDataSets:(NSArray *)lines {
+    for (KADataSet *line in lines) {
+        [self addDataSet:line];
     }
 }
 
-- (void)addLineWithYValues:(NSArray *)values{
-    [self addLine:[[KALine alloc] initWithValues:values withLineColor:[KAColor greenColor]]];
+- (void)addDataSetWithYValues:(NSArray *)values{
+    [self addDataSet:[[KADataSet alloc] initWithValues:values withLineColor:[KAColor greenColor]]];
 }
 
 
@@ -159,17 +165,16 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
 }
 #pragma mark -
 
-- (void)drawRect:(CGRect)rect
-{
-    if (self.lines.count == 0){
+- (void)drawRect:(CGRect)rect {
+    if (self.dataSets.count == 0) {
         return;
     }
-//#if TARGET_OS_MAC
-//    CGContextRef ctx = [self _graphicsContext];
-//    CGContextTranslateCTM(ctx, 0.0, rect.size.height);
-//    CGContextScaleCTM(ctx, 1.0, -1.0);
-//#endif
 
+    kBuffer = kBufferValue;
+    CGFloat widthOffset = 0;
+    if (self.type == KAChartViewTypeBar) {
+        widthOffset += [self barWidthForDataSet:[self.dataSets firstObject]]/2.f;
+    }
     
     CGFloat numberOfXAxisTicks = (self.xAxis.length);
     
@@ -199,7 +204,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
         }else{
             xValueAtIndex = [NSString stringWithFormat:@"%ld", (long)i];
         }
-        CGPoint point = CGPointMake([self xFory:i withLine:[(KALine*)[self.lines firstObject] values]], CGRectGetHeight(self.frame) - kBuffer+8);
+        CGPoint point = CGPointMake([self xFory:i withLine:[(KADataSet*)[self.dataSets firstObject] values]] + widthOffset, CGRectGetHeight(self.frame) - kBuffer+8);
         
 #if KAIsMac
         point.y = 0 + kBuffer - 16;
@@ -246,11 +251,17 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
         
         CGContextDrawPath(context, kCGPathStroke);
     }
-
-    for (KALine *line in self.lines){
-        [self drawLineForYValues:line andMaxYValue:maxYValue onContext:context];
-    }
     
+    
+    if (self.type == KAChartViewTypeLine) {
+        for (KADataSet *dataSet in self.dataSets){
+            [self drawLineForYValues:dataSet andMaxYValue:maxYValue onContext:context];
+        }
+    } else {
+        for (KADataSet *dataSet in self.dataSets){
+            [self drawBarForDataSet:dataSet andMaxYValue:maxYValue onContext:context];
+        }
+    }
 }
 
 #if KAIsMac
@@ -276,7 +287,6 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     return image;
 }
 
-
 #endif
 
 
@@ -288,8 +298,34 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
 #endif
 }
 
-- (void)drawLineForYValues:(KALine *)line andMaxYValue:(CGFloat)maxYValue onContext:(CGContextRef)context{
-    CGContextSetStrokeColorWithColor(context, [line.lineColor CGColor]);
+- (CGFloat)barWidthForDataSet:(KADataSet *)dataSet {
+    CGFloat width = CGRectGetWidth(self.frame) - kBuffer*2 - (5 * dataSet.values.count);
+    CGFloat widthOfBar = width/dataSet.values.count;
+    return widthOfBar;
+}
+
+- (void)drawBarForDataSet:(KADataSet *)dataSet andMaxYValue:(CGFloat)maxYValue onContext:(CGContextRef)context {
+    CGContextSetStrokeColorWithColor(context, [dataSet.color CGColor]);
+    
+    CGContextSetLineWidth(context, [self barWidthForDataSet:dataSet]);
+    
+    for (NSInteger i = 0; i < dataSet.values.count; i++){
+        CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withLine:dataSet.values];
+        
+#if TARGET_OS_IPHONE
+        CGFloat bottom = CGRectGetHeight(self.frame) - kBuffer;
+#else
+        CGFloat bottom = 0+kBuffer;
+#endif
+        
+        CGContextMoveToPoint(context, point.x + (YES ? [self barWidthForDataSet:dataSet]/2 : 0), bottom);
+        CGContextAddLineToPoint(context,point.x+ (YES ? [self barWidthForDataSet:dataSet]/2 : 0),point.y);
+        CGContextDrawPath(context, kCGPathStroke);
+    }
+}
+
+- (void)drawLineForYValues:(KADataSet *)line andMaxYValue:(CGFloat)maxYValue onContext:(CGContextRef)context {
+    CGContextSetStrokeColorWithColor(context, [line.color CGColor]);
     CGContextSetLineWidth(context, line.lineWidth);
     for (NSInteger i = 0; i < line.values.count; i++){
         CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withLine:line.values];

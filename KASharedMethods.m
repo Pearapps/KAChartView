@@ -19,7 +19,7 @@
 + (NSArray *)generateRandomArrayOfLength:(int)length withNumbersBetween:(CGFloat)bottom andTop:(CGFloat)top{
     NSMutableArray * array = @[].mutableCopy;
     for(NSInteger i = 0; i < length; i++){
-        array[i] = @(bottom + (arc4random_uniform((NSInteger)(top - bottom))));
+        array[i] = @(bottom + (arc4random_uniform((top - bottom))));
     }
     return array;
 }

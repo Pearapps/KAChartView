@@ -6,13 +6,18 @@
 //  Copyright (c) 2013 Kenneth Parker Ackerson. All rights reserved.
 //
 
+typedef NS_ENUM(NSUInteger, KAChartViewType) {
+    KAChartViewTypeLine,
+    KAChartViewTypeBar
+};
 
-
-#import "KALine.h"
+#import "KADataSet.h"
 #import "KAChartViewTypes.h"
 
-#define kBuffer 40 // space on each side to 'buffer' it
+#define kBufferValue 40 // space on each side to 'buffer' it
 @interface KAChartView : KAView
+
+- (instancetype)initWithFrame:(CGRect)frame andType:(KAChartViewType)type;
 
 /** @property doesDrawGrid
  *   Does draw grid?
@@ -39,19 +44,21 @@
  */
 @property (nonatomic, strong) NSArray * xAxisLabels; // You can customize the labels on the x axis
 
+@property (nonatomic, readonly) KAChartViewType type;
+
 /**
  * Add a line
  *
  * @param line Line object to add
  */
-- (void)addLine:(KALine *)line;
+- (void)addDataSet:(KADataSet *)line;
 
 /**
  * Remove a line
  *
  * @param line Line object to remove
  */
-- (void)removeLine:(KALine *)line;
+- (void)removeDataSet:(KADataSet *)line;
 
 /**
  * Add Lines
@@ -59,14 +66,14 @@
  *@param lines Array of KALines
  */
 
-- (void)addLines:(NSArray *)lines;
+- (void)addDataSets:(NSArray *)lines;
 
 /**
  * This allows you to simply add an array of NSNumbers (uses [UIColor greenColor] for line color) (I STRONGLY recomend using "- (void)addLine:(KALine *)line;")
  *
  * @param values Array of values
 */
-- (void)addLineWithYValues:(NSArray *)values;
+- (void)addDataSetWithYValues:(NSArray *)values;
 
 
 /**

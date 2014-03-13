@@ -7,16 +7,16 @@
 //
 
 #import "KAAppDelegate.h"
-#import "KALine.h"
+#import "KADataSet.h"
 @implementation KAAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    KAChartView * middle = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 700, 300)];
+    KAChartView * middle = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 700, 300) andType:KAChartViewTypeBar];
 
-    KALine *line = [[KALine alloc] initWithValues:[self generateRandomArrayOfLength:50 withNumbersBetween:0 andTop:50] withLineColor:[KAColor redColor] andFillColor:[KAColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]];
+    KADataSet *line = [[KADataSet alloc] initWithValues:[self generateRandomArrayOfLength:50 withNumbersBetween:0 andTop:50] withLineColor:[KAColor redColor] andFillColor:[KAColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]];
    // KALine *aline = [[KALine alloc] initWithValues:[self generateRandomArrayOfLength:50 withNumbersBetween:0 andTop:50] withLineColor:[KAColor greenColor] andFillColor:nil];
     
-    [middle addLines:@[line]];
+    [middle addDataSets:@[line]];
     middle.axisLabelAttributes = @{NSFontAttributeName: [KAFont systemFontOfSize:10], NSForegroundColorAttributeName: [KAColor blackColor]};
     [middle setXAxisLabels:[self createBlankStringArrayOfLength:50]];
     [middle setDoesDrawAxisLines:YES];
@@ -44,7 +44,7 @@
 - (NSArray *)generateRandomArrayOfLength:(int)length withNumbersBetween:(CGFloat)bottom andTop:(CGFloat)top {
     NSMutableArray * array = @[].mutableCopy;
     for(NSInteger i = 0; i < length; i++){
-        array[i] = @(bottom + (arc4random_uniform((NSInteger)(top - bottom))));
+        array[i] = @(bottom + (NSInteger)(arc4random_uniform((top - bottom))));
     }
     return array;
 }

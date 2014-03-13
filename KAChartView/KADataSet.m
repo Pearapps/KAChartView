@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Kenneth Parker Ackerson. All rights reserved.
 //
 
-#import "KALine.h"
-@interface KALine ()
+#import "KADataSet.h"
+@interface KADataSet ()
 @end
-@implementation KALine
+@implementation KADataSet
 - (instancetype)initWithValues:(NSArray *)values withLineColor:(KAColor *)color{
     return [self initWithValues:values withLineColor:color andFillColor:nil];
 }
@@ -22,7 +22,7 @@
 - (instancetype)initWithValues:(NSArray *)values withLineColor:(KAColor *)color andFillColor:(KAColor *)fillColor andLineWidth:(CGFloat)lineWidth{
     if (self = [super init]){
         _values = values;
-        _lineColor = color;
+        _color = color;
         _fillColor = fillColor;
         _lineWidth = lineWidth;
     }
@@ -30,7 +30,7 @@
 }
 - (void)dealloc{
     _values = nil;
-    _lineColor = nil;
+    _color = nil;
     _fillColor = nil;
 }
 @end
