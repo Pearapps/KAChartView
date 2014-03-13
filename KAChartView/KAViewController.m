@@ -46,7 +46,7 @@
     
     
     KAChartView * lowest = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 240) andType:KAChartViewTypeBar];
-    [lowest addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:24 withNumbersBetween:0 andTop:10000]] withColor:[UIColor yellowColor] andFillColor:nil]];
+    [lowest addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:24 withNumbersBetween:0 andTop:10000]] withColor:[UIColor yellowColor]]];
     
     [lowest setDoesDrawAxisLines:YES];
     [lowest setAxisLineColor:[UIColor colorWithRed:0.2 green:0.4 blue:0.1 alpha:0.7]];
