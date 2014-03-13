@@ -21,11 +21,7 @@
     [self.view addSubview:scroll];
     
     KAChartView * first = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200) andType:KAChartViewTypeLine];
-    
-    
     [first addDataSets:@[[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withColor:[UIColor greenColor] andFillColor:[UIColor colorWithRed:0 green:1.0 blue:0.0 alpha:0.1]]]];
-    
-    
     first.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
     [first setDoesDrawAxisLines:YES];
     

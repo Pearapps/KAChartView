@@ -7,7 +7,7 @@
 //
 
 #import "KAChartView.h"
-@interface KAChartView(){
+@interface KAChartView() {
     CGFloat maxY;
     CGFloat kBuffer;
 
@@ -18,13 +18,6 @@
 
 @end
 @implementation KAChartView
-
-- (void)dealloc{
-    self.axisLabelAttributes = nil;
-    self.xAxisLabels = nil;
-    self.axisLineColor = nil;
-    self.dataSets = nil;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame andType:(KAChartViewType)type {
     self = [super initWithFrame:frame];
@@ -49,52 +42,37 @@
     }
     return self;
 }
-- (void)_needsDisplay{
-#if TARGET_OS_IPHONE
-    [self setNeedsDisplay];
-#else
-    [self setNeedsDisplay:YES];
-#endif
 
-}
 #pragma mark - Setters
 
-- (void)setDoesDrawAxisLines:(BOOL)doesDrawAxisLines{
+- (void)setDoesDrawAxisLines:(BOOL)doesDrawAxisLines {
     _doesDrawAxisLines = doesDrawAxisLines;
     [self _needsDisplay];
 }
-- (void)setDoesDrawGrid:(BOOL)doesDrawGrid{
+
+- (void)setDoesDrawGrid:(BOOL)doesDrawGrid {
     _doesDrawGrid = doesDrawGrid;
     [self _needsDisplay];
 }
-- (void)setAxisLineColor:(KAColor *)axisLineColor{
+
+- (void)setAxisLineColor:(KAColor *)axisLineColor {
     _axisLineColor = axisLineColor;
     [self _needsDisplay];
 }
-- (void)setAxisLabelAttributes:(NSDictionary *)axisLabelAttributes{
+
+- (void)setAxisLabelAttributes:(NSDictionary *)axisLabelAttributes {
     _axisLabelAttributes = axisLabelAttributes;
     [self _needsDisplay];
 }
-- (void)setXAxis:(NSRange)xAxis{
+
+- (void)setXAxis:(NSRange)xAxis {
     _xAxis = xAxis;
     [self _needsDisplay];
 }
-#pragma mark -
+
 #pragma mark - Managing KALine(s)
 
-- (void)recalculateMaxY{
-    maxY = -MAXFLOAT;
-    for (KADataSet *line in self.dataSets){
-        for (NSNumber * numb in line.values){
-            CGFloat y = [numb doubleValue];
-            if (y > maxY){
-                maxY = y;
-            }
-        }
-    }
-}
-
-- (void)removeDataSet:(KADataSet *)dataSet{
+- (void)removeDataSet:(KADataSet *)dataSet {
     [self.dataSets removeObject:dataSet];
     if (self.dataSets.count == 0){
         maxY = -MAXFLOAT;
@@ -133,12 +111,9 @@
     [self addDataSet:[[KADataSet alloc] initWithValues:values withColor:[KAColor greenColor]]];
 }
 
-
-#pragma mark -
-#pragma mark - Math C Functions
-
-
-static inline CGFloat rounded(CGFloat value){
+#pragma mark - Private -
+#pragma mark C Math Functions
+static inline CGFloat rounded(CGFloat value) {
     static const CGFloat preferred[10] = {1.25,  1.6,  2.0,  2.5,  3.15,  4.0,  5.0,  6.3,  8.0, 10.0};
     CGFloat mag = log10(value);
     CGFloat  power = pow(10,floor(mag));
@@ -152,7 +127,8 @@ static inline CGFloat rounded(CGFloat value){
     }
     return 1.0 * power;
 }
-static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y labels per 200 points
+
+static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView) { // 5 y labels per 200 points
     heightOfView -= 200;
     if (heightOfView < 200){
         return 5;
@@ -165,7 +141,20 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
         return ticks;
     }
 }
+
 #pragma mark -
+
+- (void)recalculateMaxY {
+    maxY = -MAXFLOAT;
+    for (KADataSet *line in self.dataSets){
+        for (NSNumber * numb in line.values){
+            CGFloat y = [numb doubleValue];
+            if (y > maxY){
+                maxY = y;
+            }
+        }
+    }
+}
 
 - (void)drawRect:(CGRect)rect {
     if (self.dataSets.count == 0) {
@@ -254,7 +243,6 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
         CGContextDrawPath(context, kCGPathStroke);
     }
     
-    
     if (self.type == KAChartViewTypeLine) {
         for (KADataSet *dataSet in self.dataSets){
             [self drawLineForYValues:dataSet andMaxYValue:maxYValue onContext:context];
@@ -266,6 +254,14 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     }
 }
 
+- (void)_needsDisplay{
+#if TARGET_OS_IPHONE
+    [self setNeedsDisplay];
+#else
+    [self setNeedsDisplay:YES];
+#endif
+    
+}
 #if KAIsMac
 
 - (KAImage *)imageRepresentation {
@@ -292,7 +288,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
 #endif
 
 
-- (CGContextRef)_graphicsContext{
+- (CGContextRef)_graphicsContext {
 #if TARGET_OS_IPHONE
     return UIGraphicsGetCurrentContext();
 #else
@@ -349,7 +345,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
         
         CGContextMoveToPoint(context, kBuffer, y);
         
-        for (int i = 0; i < dataSet.values.count; i++){
+        for (int i = 0; i < dataSet.values.count; i++) {
             CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withValues:dataSet.values];
             
             CGContextAddLineToPoint(context,point.x,point.y);
@@ -362,13 +358,20 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     }
 }
 
+- (void)dealloc {
+    self.axisLabelAttributes = nil;
+    self.xAxisLabels = nil;
+    self.axisLineColor = nil;
+    self.dataSets = nil;
+}
 
-- (CGPoint)pointWithIndex:(NSInteger)i andMaxValue:(CGFloat)maxYValue withValues:(NSArray *)values{
+
+- (CGPoint)pointWithIndex:(NSInteger)i andMaxValue:(CGFloat)maxYValue withValues:(NSArray *)values {
     CGFloat yval = [(NSNumber *)values[i] doubleValue]/maxYValue;
     CGPoint point = [self pointForY:yval withI:i withLine:values];
     return point;
 }
-- (CGPoint)pointForY:(CGFloat)y withI:(NSInteger)i withLine:(NSArray *)lineValues{
+- (CGPoint)pointForY:(CGFloat)y withI:(NSInteger)i withLine:(NSArray *)lineValues {
     CGPoint point = CGPointMake(
                        [self xFory:i withLine:lineValues],
 #if TARGET_OS_IPHONE

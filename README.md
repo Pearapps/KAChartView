@@ -31,3 +31,4 @@ Line and Bar chart for iOS 7.0+ and Mac OS X 10.9+
 
 What's Next:
 - The 'buffer' needs to be flexible to accommodate huge y axis values, while retaining right aligned y axis labels.
+- API and code cleansing. (Yes it has gotten messy, and I apologize - I think KAChartView is on it's 5th in-place rewrite, and so stuff gets dirty.)
