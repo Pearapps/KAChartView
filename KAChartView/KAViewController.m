@@ -23,7 +23,7 @@
     KAChartView * first = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200) andType:KAChartViewTypeLine];
     
     
-    [first addDataSets:@[[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withLineColor:[UIColor greenColor] andFillColor:[UIColor colorWithRed:0 green:1.0 blue:0.0 alpha:0.1]]]];
+    [first addDataSets:@[[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withColor:[UIColor greenColor] andFillColor:[UIColor colorWithRed:0 green:1.0 blue:0.0 alpha:0.1]]]];
     
     
     first.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
@@ -31,18 +31,18 @@
     
     
     KAChartView * middle = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200) andType:KAChartViewTypeLine];
-    [middle addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withLineColor:[UIColor redColor] andFillColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]]];
+    [middle addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withColor:[UIColor redColor] andFillColor:[UIColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]]];
     middle.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor yellowColor]};
     [middle setXAxisLabels:[self numberedMonthIDsWithMonth:@"Sep" numberOfDays:7]];
     [middle setDoesDrawAxisLines:YES];
     
     
     
-    KAChartView * next = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200) andType:KAChartViewTypeBar];
-    KADataSet * lastLine = [[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withLineColor:[UIColor greenColor] andLineWidth:1.0];
+    KAChartView * next = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200) andType:KAChartViewTypeLine];
+    KADataSet * lastLine = [[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor greenColor] andLineWidth:1.0];
     
-    [next addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withLineColor:[UIColor redColor]]];
-    [next addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withLineColor:[UIColor purpleColor]]];
+    [next addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor redColor]]];
+    [next addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor purpleColor]]];
     [next addDataSet:lastLine];
     next.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
    // [self performSelector:@selector(test:) withObject:next afterDelay:1.5];
@@ -50,7 +50,7 @@
     
     
     KAChartView * lowest = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 240) andType:KAChartViewTypeBar];
-    [lowest addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:24 withNumbersBetween:0 andTop:10000]] withLineColor:[UIColor yellowColor] andFillColor:nil]];
+    [lowest addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:24 withNumbersBetween:0 andTop:10000]] withColor:[UIColor yellowColor] andFillColor:nil]];
     
     [lowest setDoesDrawAxisLines:YES];
     [lowest setAxisLineColor:[UIColor colorWithRed:0.2 green:0.4 blue:0.1 alpha:0.7]];
@@ -73,7 +73,6 @@
     [charts addObject:middle];
     [charts addObject:next];
     [charts addObject:lowest];
-
     
     
     __block CGFloat curY = 0;
@@ -85,9 +84,7 @@
         
     }];
     
-    [scroll setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, curY)];
-
-    
+    [scroll setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, curY)];    
     
     [self.view setBackgroundColor:[UIColor blackColor]];
     

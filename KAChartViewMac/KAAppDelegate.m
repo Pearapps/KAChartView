@@ -13,7 +13,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     KAChartView * middle = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 700, 300) andType:KAChartViewTypeBar];
 
-    KADataSet *line = [[KADataSet alloc] initWithValues:[self generateRandomArrayOfLength:50 withNumbersBetween:0 andTop:50] withLineColor:[KAColor redColor] andFillColor:[KAColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]];
+    KADataSet *line = [[KADataSet alloc] initWithValues:[self generateRandomArrayOfLength:50 withNumbersBetween:0 andTop:50] withColor:[KAColor redColor] andFillColor:[KAColor colorWithRed:1.0 green:0 blue:0.0 alpha:0.15]];
    // KALine *aline = [[KALine alloc] initWithValues:[self generateRandomArrayOfLength:50 withNumbersBetween:0 andTop:50] withLineColor:[KAColor greenColor] andFillColor:nil];
     
     [middle addDataSets:@[line]];

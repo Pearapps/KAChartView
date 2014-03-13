@@ -31,6 +31,7 @@
     if (self) {
         
         self.type = type;
+        
         kBuffer = kBufferValue;
 
         self.doesDrawGrid = NO;
@@ -93,8 +94,8 @@
     }
 }
 
-- (void)removeDataSet:(KADataSet *)line{
-    [self.dataSets removeObject:line];
+- (void)removeDataSet:(KADataSet *)dataSet{
+    [self.dataSets removeObject:dataSet];
     if (self.dataSets.count == 0){
         maxY = -MAXFLOAT;
         [self setXAxis:NSMakeRange(0, 0)];
@@ -104,15 +105,16 @@
     }
     [self _needsDisplay];
 }
-- (void)addDataSet:(KADataSet *)line{
+
+- (void)addDataSet:(KADataSet *)dataSet{
     
     if (self.dataSets.count > 0){
-        NSAssert((line.values.count == self.xAxis.length), @"Invalid additional line - different amount of values.");
+        NSAssert((dataSet.values.count == self.xAxis.length), @"Invalid additional line - different amount of values.");
     }else{
-        [self setXAxis:NSMakeRange(0, line.values.count)];
+        [self setXAxis:NSMakeRange(0, dataSet.values.count)];
     }
-    [self.dataSets addObject:line];
-    for (NSNumber * numb in line.values){
+    [self.dataSets addObject:dataSet];
+    for (NSNumber * numb in dataSet.values){
         CGFloat y = [numb doubleValue];
         if (y > maxY){
             maxY = y;
@@ -121,14 +123,14 @@
     [self _needsDisplay];
 }
 
-- (void)addDataSets:(NSArray *)lines {
-    for (KADataSet *line in lines) {
-        [self addDataSet:line];
+- (void)addDataSets:(NSArray *)dataSets {
+    for (KADataSet *dataSet in dataSets) {
+        [self addDataSet:dataSet];
     }
 }
 
 - (void)addDataSetWithYValues:(NSArray *)values{
-    [self addDataSet:[[KADataSet alloc] initWithValues:values withLineColor:[KAColor greenColor]]];
+    [self addDataSet:[[KADataSet alloc] initWithValues:values withColor:[KAColor greenColor]]];
 }
 
 
@@ -173,7 +175,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     kBuffer = kBufferValue;
     CGFloat widthOffset = 0;
     if (self.type == KAChartViewTypeBar) {
-        widthOffset += [self barWidthForDataSet:[self.dataSets firstObject]]/2.f;
+        widthOffset += [self barWidthForDataSet:[self.dataSets firstObject]]/2.f; // This is to adjust for having to move each bar over by widthOfTheBar/2
     }
     
     CGFloat numberOfXAxisTicks = (self.xAxis.length);
@@ -182,7 +184,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     
     CGFloat maxYValue = rounded(maxY);
     
-    if (maxYValue <= 0){
+    if (maxYValue <= 0) {
         // nope. dont draw anything.
         return;
     }
@@ -310,7 +312,7 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     CGContextSetLineWidth(context, [self barWidthForDataSet:dataSet]);
     
     for (NSInteger i = 0; i < dataSet.values.count; i++){
-        CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withLine:dataSet.values];
+        CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withValues:dataSet.values];
         
 #if TARGET_OS_IPHONE
         CGFloat bottom = CGRectGetHeight(self.frame) - kBuffer;
@@ -324,11 +326,11 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     }
 }
 
-- (void)drawLineForYValues:(KADataSet *)line andMaxYValue:(CGFloat)maxYValue onContext:(CGContextRef)context {
-    CGContextSetStrokeColorWithColor(context, [line.color CGColor]);
-    CGContextSetLineWidth(context, line.lineWidth);
-    for (NSInteger i = 0; i < line.values.count; i++){
-        CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withLine:line.values];
+- (void)drawLineForYValues:(KADataSet *)dataSet andMaxYValue:(CGFloat)maxYValue onContext:(CGContextRef)context {
+    CGContextSetStrokeColorWithColor(context, [dataSet.color CGColor]);
+    CGContextSetLineWidth(context, dataSet.lineWidth);
+    for (NSInteger i = 0; i < dataSet.values.count; i++){
+        CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withValues:dataSet.values];
         if (i == 0){
             CGContextMoveToPoint(context, point.x, point.y);
         }
@@ -338,31 +340,32 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     CGContextSetLineJoin(context, kCGLineJoinBevel);
     CGContextDrawPath(context, kCGPathStroke);
     
-    if (line.fillColor){
+    if (dataSet.fillColor){
         CGFloat y = CGRectGetHeight(self.frame) - kBuffer;
+        
 #if KAIsMac
         y = kBuffer;
 #endif
         
         CGContextMoveToPoint(context, kBuffer, y);
         
-        for (int i = 0; i < line.values.count; i++){
-            CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withLine:line.values];
+        for (int i = 0; i < dataSet.values.count; i++){
+            CGPoint point = [self pointWithIndex:i andMaxValue:maxYValue withValues:dataSet.values];
             
             CGContextAddLineToPoint(context,point.x,point.y);
         }
         
-        CGContextAddLineToPoint(context, [self xFory:line.values.count-1 withLine:line.values], y);
+        CGContextAddLineToPoint(context, [self xFory:dataSet.values.count-1 withLine:dataSet.values], y);
         
-        CGContextSetFillColorWithColor(context, [[line fillColor] CGColor]);
+        CGContextSetFillColorWithColor(context, [[dataSet fillColor] CGColor]);
         CGContextDrawPath(context, kCGPathFill);
     }
 }
 
 
-- (CGPoint)pointWithIndex:(NSInteger)i andMaxValue:(CGFloat)maxYValue withLine:(NSArray *)lineValues{
-    CGFloat yval = [(NSNumber *)lineValues[i] doubleValue]/maxYValue;
-    CGPoint point = [self pointForY:yval withI:i withLine:lineValues];
+- (CGPoint)pointWithIndex:(NSInteger)i andMaxValue:(CGFloat)maxYValue withValues:(NSArray *)values{
+    CGFloat yval = [(NSNumber *)values[i] doubleValue]/maxYValue;
+    CGPoint point = [self pointForY:yval withI:i withLine:values];
     return point;
 }
 - (CGPoint)pointForY:(CGFloat)y withI:(NSInteger)i withLine:(NSArray *)lineValues{
@@ -386,12 +389,5 @@ static inline CGFloat calculateAmountOfTicks(CGFloat heightOfView){ // 5 y label
     return kBuffer + amountOver;
     
 }
-
-
-
-
-
-
-
 
 @end
