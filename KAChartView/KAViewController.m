@@ -35,11 +35,11 @@
     
     
     KAChartView * next = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200) andType:KAChartViewTypeLine];
-    KADataSet * lastLine = [[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor greenColor] andLineWidth:1.0];
+    KADataSet * lastDataSet = [[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor greenColor] andLineWidth:1.0];
     
     [next addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor redColor]]];
     [next addDataSet:[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:17 withNumbersBetween:0 andTop:20000]] withColor:[UIColor purpleColor]]];
-    [next addDataSet:lastLine];
+    [next addDataSet:lastDataSet];
     next.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
    // [self performSelector:@selector(test:) withObject:next afterDelay:1.5];
     
