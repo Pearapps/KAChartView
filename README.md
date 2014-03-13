@@ -6,15 +6,21 @@ Line and Bar chart for iOS 7.0+ and Mac OS X 10.9+
 #Features
 
 - Fast.
-- Customizable (line color, fill color (line), axis color, does show axises, x axis labels and their attributes)
+- Customizable (line color, fill color (line chart), axis color, does show axises, x axis labels and their attributes)
 - Uses preferred numbers (r10 series) to calculate and scale the graph automatically.
 - Scales to any frame.
 
 #### How To Use
-	// Basic Line Chart Implementation
+	// Initialize the KAChartView
 	KAChartView * first = [[KAChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200) andType:KAChartViewTypeLine];
-		[first addDataSets:@[[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withColor:[UIColor greenColor] andFillColor:[UIColor colorWithRed:0 green:1.0 blue:0.0 alpha:0.1]]]];
+	
+	// Create and add the data set
+	[first addDataSets:@[[[KADataSet alloc] initWithValues:[self randomizedPoints:[self generateRandomArrayOfLength:7 withNumbersBetween:0 andTop:200]] withColor:[UIColor greenColor] andFillColor:[UIColor colorWithRed:0 green:1.0 blue:0.0 alpha:0.1]]]];
+	
+	// Set your axis label attributes
 	first.axisLabelAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10], NSForegroundColorAttributeName: [UIColor lightGrayColor]};
+	
+	// Set boolean to allow the axis lines to be drawn
 	[first setDoesDrawAxisLines:YES];
 
 
@@ -24,5 +30,4 @@ Line and Bar chart for iOS 7.0+ and Mac OS X 10.9+
 
 
 What's Next:
-- The 'buffer' needs to be flexible to accomidate huge y axis values, while retaining right algined y axis labels.
-- Even more customization (line width, etc)
+- The 'buffer' needs to be flexible to accommodate huge y axis values, while retaining right aligned y axis labels.
