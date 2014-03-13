@@ -28,6 +28,8 @@ Line and Bar chart for iOS 7.0+ and Mac OS X 10.9+
 
 ![alt tag](https://raw.github.com/Pearapps/KAChartView/master/chart1.png)
 
+![alt tag](https://raw.github.com/Pearapps/KAChartView/master/chart2.png)
+
 
 What's Next:
 - The 'buffer' needs to be flexible to accommodate huge y axis values, while retaining right aligned y axis labels.
