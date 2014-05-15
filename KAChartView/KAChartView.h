@@ -47,29 +47,29 @@ typedef NS_ENUM(NSUInteger, KAChartViewType) {
 @property (nonatomic, readonly) KAChartViewType type;
 
 /**
- * Add a line
+ * Add a KADataSet
  *
- * @param line Line object to add
+ * @param dataSet KADataSet object to add
  */
-- (void)addDataSet:(KADataSet *)line;
+- (void)addDataSet:(KADataSet *)dataSet;
 
 /**
- * Remove a line
+ * Remove a KADataSet
  *
- * @param line Line object to remove
+ * @param dataSet KADataSet object to remove
  */
-- (void)removeDataSet:(KADataSet *)line;
+- (void)removeDataSet:(KADataSet *)dataSet;
 
 /**
- * Add Lines
+ * Add KADataSet's
  *
- *@param lines Array of KALines
+ *@param dataSets Array of KADataSets
  */
 
-- (void)addDataSets:(NSArray *)lines;
+- (void)addDataSets:(NSArray *)dataSets;
 
 /**
- * This allows you to simply add an array of NSNumbers (uses [UIColor greenColor] for line color) (I STRONGLY recomend using "- (void)addLine:(KALine *)line;")
+ * This allows you to simply add an array of NSNumbers (uses [UIColor greenColor] for line color) (I STRONGLY recomend using "- (void)addLine:(KADataSet * *)line;")
  *
  * @param values Array of values
 */

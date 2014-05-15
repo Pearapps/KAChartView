@@ -11,20 +11,22 @@
 @interface KADataSet : NSObject
 
 // designated initializer
-- (instancetype)initWithValues:(NSArray *)values withColor:(KAColor *)color; // Set values and line color of the line
+- (instancetype)initWithValues:(NSArray *)values withColor:(KAColor *)color; // Set values and color in which the data will be display
 
 
 /** @property color
- *   The lines color (UIColor for iOS, NSColor for Mac OS X)
+ *   The data set's color (UIColor for iOS, NSColor for Mac OS X)
  */
 @property (nonatomic, readonly, strong) KAColor *color;
 
 /** @property values
- *   The array of values represented by the line
+ *   The array of values represented in the graph
  */
 @property (nonatomic, readonly, strong) NSArray *values;
 
 #pragma mark - KAChartViewTypeLine ONLY -
+
+// KAChartViewTypeLine only
 
 /** @property lineWidth
  *   The lines width
